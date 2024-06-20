@@ -1,4 +1,4 @@
-package pages.RegistrationPage;
+package pages;
 
 import org.openqa.selenium.Keys;
 
