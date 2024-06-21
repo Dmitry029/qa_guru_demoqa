@@ -2,9 +2,6 @@ package pages;
 
 import org.openqa.selenium.Keys;
 
-import java.util.List;
-
-import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -90,13 +87,11 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage submitRegistration() {
-        $("#submit").click();
-        return this;
+    public void submitRegistration() {
+        $("#submit").scrollIntoView(true).click();
     }
 
-    public void checkFormIsFilledOutCorrectly(List<String> expectedData) {
-        $$("tbody tr td:last-child")
-                .should(texts(expectedData));
+    public void checkThereIsNoConfirmationWindow() {
+        $(".modal-content").shouldNotBe(visible);
     }
 }

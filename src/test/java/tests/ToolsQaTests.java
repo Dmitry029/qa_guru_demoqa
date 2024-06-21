@@ -1,13 +1,16 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import utils.DateUtils;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ToolsQaTests extends BaseTest {
 
     @Test
-    void fillForm() {
+    void fillOutAllFormFieldsTest() {
         String firstName = "TestFirstName";
         String lastName = "TestLastName";
         String email = "test@test.com";
@@ -47,7 +50,44 @@ public class ToolsQaTests extends BaseTest {
                 .setAddress(address)
                 .selectState(state)
                 .selectCity(city)
-                .submitRegistration()
-                .checkFormIsFilledOutCorrectly(expectedData);
+                .submitRegistration();
+        resultOfFillingOutTheFormComponent.checkFormIsFilledOutCorrectly(expectedData);
+    }
+
+    @Test
+    void fillInOnlyTheRequiredFormFieldsTest() {
+        String firstName = "TestFirstName2";
+        String lastName = "TestLastName2";
+        String gender = "Male";
+        String mobile = "0123456789";
+
+        List<String> expectedData = List.of(
+                firstName + " " + lastName,
+                gender,
+                mobile,
+                DateUtils.getCurrentDate()
+        );
+
+        registrationPage.openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .selectGender(gender)
+                .setMobile(mobile)
+                .submitRegistration();
+        assertTrue(resultOfFillingOutTheFormComponent.isFormFilledOutCorrectly(expectedData));
+    }
+
+    @Test
+    void notAllRequiredDataTest() {
+        String firstName = "TestFirstName2";
+        String gender = "Male";
+        String mobile = "0123456789";
+
+        registrationPage.openPage()
+                .setFirstName(firstName)
+                .selectGender(gender)
+                .setMobile(mobile)
+                .submitRegistration();
+        registrationPage.checkThereIsNoConfirmationWindow();
     }
 }
