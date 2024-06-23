@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -7,25 +8,36 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
+    private final SelenideElement firstNameInput = $("#firstName");
+    private final SelenideElement lastNameInput = $("#lastName");
+    private final SelenideElement emailInput = $("#userEmail-wrapper input");
+    private final SelenideElement mobileInput = $("#userNumber");
+    private final SelenideElement uploadPicture = $("#uploadPicture");
+    private final SelenideElement addressInput = $("#currentAddress");
+    private final SelenideElement stateInput = $("#state");
+    private final SelenideElement cityInput = $("#city");
+    private final SelenideElement submitButton = $("#submit");
+    private final SelenideElement confirmationWindow = $(".modal-content");
+    private final SelenideElement subjectsContainer = $("#subjectsContainer");
+    private final SelenideElement subjectInput = $("[class*= 'subjects-auto-complete__control--is-focused'] input");
+
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         return this;
     }
 
     public RegistrationPage setFirstName(String firstName) {
-        $("#firstName").setValue(firstName);
+        firstNameInput.setValue(firstName);
         return this;
     }
 
     public RegistrationPage setLastName(String lastName) {
-        $("#lastName").setValue(lastName);
+        lastNameInput.setValue(lastName);
         return this;
     }
 
     public RegistrationPage setEmail(String email) {
-        $("#userEmail-wrapper input").setValue(email);
-        $x("//*[contains(@class, 'custom-control-label') and text()='Male']")
-                .should(visible).click();
+        emailInput.setValue(email);
         return this;
     }
 
@@ -36,7 +48,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setMobile(String mobile) {
-        $("#userNumber").setValue(mobile);
+        mobileInput.setValue(mobile);
         return this;
     }
 
@@ -50,9 +62,8 @@ public class RegistrationPage {
     }
 
     public RegistrationPage selectSubject(String subject) {
-        $("#subjectsContainer").click();
-        $("[class*= 'subjects-auto-complete__control--is-focused'] input")
-                .sendKeys(subject);
+        subjectsContainer.click();
+        subjectInput.sendKeys(subject);
         $x(String.format("//*[@id and text()='%s']", subject)).click();
         return this;
     }
@@ -64,34 +75,33 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setPicture(String fileName) {
-        $("#uploadPicture").uploadFromClasspath(fileName);
+        uploadPicture.uploadFromClasspath(fileName);
         return this;
     }
 
     public RegistrationPage setAddress(String address) {
-        String locator = "#currentAddress";
-        $(locator).click();
-        $(locator).setValue(address);
+        addressInput.click();
+        addressInput.setValue(address);
         return this;
     }
 
     public RegistrationPage selectState(String state) {
-        $("#state").scrollIntoView(true).click();
+        stateInput.scrollIntoView(true).click();
         $x(String.format("//*[@id and text()='%s']", state)).click();
         return this;
     }
 
     public RegistrationPage selectCity(String city) {
-        $("#city").click();
+        cityInput.click();
         $x(String.format("//*[@id and text()='%s']", city)).click();
         return this;
     }
 
     public void submitRegistration() {
-        $("#submit").scrollIntoView(true).click();
+        submitButton.scrollIntoView(true).click();
     }
 
     public void checkThereIsNoConfirmationWindow() {
-        $(".modal-content").shouldNotBe(visible);
+        confirmationWindow.shouldNotBe(visible);
     }
 }
