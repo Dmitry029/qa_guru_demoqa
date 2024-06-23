@@ -15,21 +15,21 @@ public class ToolsQaTests extends BaseTest {
     private final ResultOfFillingOutTheFormComponent resultOfFillingOutTheFormComponent =
             new ResultOfFillingOutTheFormComponent();
     private final CalendarComponent calendarComponent = new CalendarComponent();
+    private final String firstName = "TestFirstName",
+            lastName = "TestLastName",
+            email = "test@test.com",
+            gender = "Male",
+            mobile = "0123456789",
+            dateOfBirth = "01 May,1999",
+            subject = "Maths",
+            hobby = "Sports",
+            fileName = "img.png",
+            address = "Test street 1",
+            state = "Haryana",
+            city = "Karnal";
 
     @Test
     void fillOutAllFormFieldsTest() {
-        String firstName = "TestFirstName";
-        String lastName = "TestLastName";
-        String email = "test@test.com";
-        String gender = "Male";
-        String mobile = "0123456789";
-        String dateOfBirth = "01 May,1999";
-        String subject = "Maths";
-        String hobby = "Sports";
-        String fileName = "img.png";
-        String address = "Test street 1";
-        String state = "Haryana";
-        String city = "Karnal";
 
         List<String> expectedData = List.of(
                 firstName + " " + lastName,
@@ -53,7 +53,7 @@ public class ToolsQaTests extends BaseTest {
         calendarComponent.setDateOfBirthBySelect(dateOfBirth);
         registrationPage.selectSubject(subject)
                 .selectHobbies(hobby)
-                .setPicture(fileName)
+                .setPicture("img/" + fileName)
                 .setAddress(address)
                 .selectState(state)
                 .selectCity(city)
@@ -63,10 +63,6 @@ public class ToolsQaTests extends BaseTest {
 
     @Test
     void fillInOnlyTheRequiredFormFieldsTest() {
-        String firstName = "TestFirstName2";
-        String lastName = "TestLastName2";
-        String gender = "Male";
-        String mobile = "0123456789";
 
         List<String> expectedData = List.of(
                 firstName + " " + lastName,
@@ -86,10 +82,6 @@ public class ToolsQaTests extends BaseTest {
 
     @Test
     void notAllRequiredDataTest() {
-        String firstName = "TestFirstName2";
-        String gender = "Male";
-        String mobile = "0123456789";
-
         registrationPage.openPage()
                 .setFirstName(firstName)
                 .selectGender(gender)
