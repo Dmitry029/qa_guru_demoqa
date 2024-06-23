@@ -1,6 +1,9 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
+import pages.components.CalendarComponent;
+import pages.components.ResultOfFillingOutTheFormComponent;
 import utils.DateUtils;
 
 import java.util.List;
@@ -8,6 +11,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ToolsQaTests extends BaseTest {
+    private final RegistrationPage registrationPage = new RegistrationPage();
+    private final ResultOfFillingOutTheFormComponent resultOfFillingOutTheFormComponent =
+            new ResultOfFillingOutTheFormComponent();
+    private final CalendarComponent calendarComponent = new CalendarComponent();
 
     @Test
     void fillOutAllFormFieldsTest() {
@@ -16,7 +23,7 @@ public class ToolsQaTests extends BaseTest {
         String email = "test@test.com";
         String gender = "Male";
         String mobile = "0123456789";
-        String dateOfBirth = "20 May,1999";
+        String dateOfBirth = "01 May,1999";
         String subject = "Maths";
         String hobby = "Sports";
         String fileName = "img.png";
@@ -42,9 +49,9 @@ public class ToolsQaTests extends BaseTest {
                 .setLastName(lastName)
                 .setEmail(email)
                 .selectGender(gender)
-                .setMobile(mobile)
-                .setDateOfBirth(dateOfBirth)
-                .selectSubject(subject)
+                .setMobile(mobile);
+        calendarComponent.setDateOfBirthBySelect(dateOfBirth);
+        registrationPage.selectSubject(subject)
                 .selectHobbies(hobby)
                 .setPicture(fileName)
                 .setAddress(address)

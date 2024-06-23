@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -49,15 +48,6 @@ public class RegistrationPage {
 
     public RegistrationPage setMobile(String mobile) {
         mobileInput.setValue(mobile);
-        return this;
-    }
-
-    public RegistrationPage setDateOfBirth(String date) {
-        String locator = "#dateOfBirthInput";
-        $(locator).click();
-        $(locator).sendKeys(Keys.CONTROL + "a");
-        $(locator).sendKeys(date);
-        $(locator).sendKeys(Keys.ENTER);
         return this;
     }
 
