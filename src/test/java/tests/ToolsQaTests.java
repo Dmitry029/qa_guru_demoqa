@@ -9,24 +9,13 @@ import utils.DateUtils;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tests.TestData.*;
 
 public class ToolsQaTests extends BaseTest {
     private final RegistrationPage registrationPage = new RegistrationPage();
     private final ResultOfFillingOutTheFormComponent resultOfFillingOutTheFormComponent =
             new ResultOfFillingOutTheFormComponent();
     private final CalendarComponent calendarComponent = new CalendarComponent();
-    private final String firstName = "TestFirstName",
-            lastName = "TestLastName",
-            email = "test@test.com",
-            gender = "Male",
-            mobile = "0123456789",
-            dateOfBirth = "01 May,1999",
-            subject = "Maths",
-            hobby = "Sports",
-            fileName = "img.png",
-            address = "Test street 1",
-            state = "Haryana",
-            city = "Karnal";
 
     @Test
     void fillOutAllFormFieldsTest() {
