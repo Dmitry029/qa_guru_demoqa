@@ -1,4 +1,4 @@
-package tests;
+package utils;
 
 import com.github.javafaker.Faker;
 
@@ -10,18 +10,28 @@ import java.util.Locale;
 public class TestData {
 
     private static Faker faker = new Faker();
-    public static String firstName = faker.name().firstName();
-    public static String lastName = faker.name().lastName();
-    public static String email = faker.internet().emailAddress();
-    public static String gender = getGender();
-    public static String mobile = faker.number().digits(10);
-    public static String dateOfBirth = getDateOfBirth();
-    public static String subject = getSubject();
-    public static String hobby = getHobby();
-    public static String fileName = getFile();
-    public static String address = faker.address().streetAddress();
-    public static String state = getState();
-    public static String city = getCity(state);
+
+    public static String getFirstName() {
+        return faker.name().firstName();
+    }
+
+    public static String getLastName() {
+        return faker.name().lastName();
+    }
+
+    public static String getEmail() {
+        return faker.internet().emailAddress();
+    }
+
+    public static String getGender() {
+        List<String> genders = List.of("Male", "Female", "Other");
+        int index = faker.number().numberBetween(0, genders.size() - 1);
+        return genders.get(index);
+    }
+
+    public static String getMobile() {
+        return faker.number().digits(10);
+    }
 
     public static String getDateOfBirth() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM,yyyy", Locale.ENGLISH);
@@ -29,10 +39,11 @@ public class TestData {
         return formatter.format(date);
     }
 
-    public static String getGender() {
-        List<String> genders = List.of("Male", "Female", "Other");
-        int index = faker.number().numberBetween(0, genders.size() - 1);
-        return genders.get(index);
+    public static String getSubject() {
+        List<String> subjects = List.of("Maths", "Biology", "Computer Science", "Commerce", "Accounting", "Economics"
+                , "Social Studies", "History", "Physics");
+        int index = faker.number().numberBetween(0, subjects.size() - 1);
+        return subjects.get(index);
     }
 
     public static String getHobby() {
@@ -47,11 +58,8 @@ public class TestData {
         return files.get(index);
     }
 
-    public static String getSubject() {
-        List<String> subjects = List.of("Math", "Biology", "Computer Science", "Commerce", "Accounting", "Economics"
-                , "Social Studies", "History", "Physics");
-        int index = faker.number().numberBetween(0, subjects.size() - 1);
-        return subjects.get(index);
+    public static String getAddress() {
+        return faker.address().streetAddress();
     }
 
     public static String getState() {

@@ -22,6 +22,8 @@ public class RegistrationPage {
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        executeJavaScript("document.getElementById('close-fixedban').parentNode.remove()");
+        executeJavaScript("document.getElementsByTagName('footer')[0].remove()");
         return this;
     }
 

@@ -9,7 +9,7 @@ import utils.DateUtils;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tests.TestData.*;
+import static utils.TestData.*;
 
 public class ToolsQaTests extends BaseTest {
     private final RegistrationPage registrationPage = new RegistrationPage();
@@ -19,6 +19,18 @@ public class ToolsQaTests extends BaseTest {
 
     @Test
     void fillOutAllFormFieldsTest() {
+        String firstName = getFirstName();
+        String lastName = getLastName();
+        String email = getEmail();
+        String gender = getGender();
+        String mobile = getMobile();
+        String dateOfBirth = getDateOfBirth();
+        String subject = getSubject();
+        String hobby = getHobby();
+        String fileName = getFile();
+        String address = getAddress();
+        String state = getState();
+        String city = getCity(state);
 
         List<String> expectedData = List.of(
                 firstName + " " + lastName,
@@ -53,6 +65,11 @@ public class ToolsQaTests extends BaseTest {
     @Test
     void fillInOnlyTheRequiredFormFieldsTest() {
 
+        String firstName = getFirstName();
+        String lastName = getLastName();
+        String gender = getGender();
+        String mobile = getMobile();
+
         List<String> expectedData = List.of(
                 firstName + " " + lastName,
                 gender,
@@ -71,6 +88,10 @@ public class ToolsQaTests extends BaseTest {
 
     @Test
     void notAllRequiredDataTest() {
+        String firstName = getFirstName();
+        String gender = getGender();
+        String mobile = getMobile();
+
         registrationPage.openPage()
                 .setFirstName(firstName)
                 .selectGender(gender)
