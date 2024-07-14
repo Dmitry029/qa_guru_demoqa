@@ -1,5 +1,25 @@
 plugins {
     id 'java-library'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+def allureVersion = "2.21.0",
+    selenideVersion = "7.3.1",
+    junitVersion = "5.10.2"
+
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
 }
 
 repositories {
@@ -8,13 +28,32 @@ repositories {
 
 dependencies {
     testImplementation(
-            'com.codeborne:selenide:7.3.1',
-            'org.junit.jupiter:junit-jupiter:5.10.2',
-            'org.slf4j:slf4j-simple:2.0.13',
-            'com.github.javafaker:javafaker:1.0.2'
+            "com.codeborne:selenide:$selenideVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "com.github.javafaker:javafaker:1.0.2",
+            "io.qameta.allure:allure-selenide:$allureVersion"
     )
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
+}
+
+task demoqa_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("demoqa")
+    }
 }

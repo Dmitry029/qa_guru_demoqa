@@ -1,5 +1,7 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.CalendarComponent;
@@ -18,6 +20,8 @@ public class ToolsQaTests extends BaseTest {
     private final CalendarComponent calendarComponent = new CalendarComponent();
 
     @Test
+    @Tag("demoqa")
+    @DisplayName("Fill in all form fields")
     void fillOutAllFormFieldsTest() {
         String firstName = getFirstName();
         String lastName = getLastName();
