@@ -31,7 +31,8 @@ dependencies {
             "com.codeborne:selenide:$selenideVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "com.github.javafaker:javafaker:1.0.2",
-            "io.qameta.allure:allure-selenide:$allureVersion"
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            'org.slf4j:slf4j-simple:2.0.7'
     )
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 }
@@ -45,11 +46,6 @@ tasks.withType(Test) {
             exceptionFormat "short"
         }
     }
-}
-
-test {
-    useJUnitPlatform()
-    systemProperties(System.getProperties())
 }
 
 task demoqa_test(type: Test) {
