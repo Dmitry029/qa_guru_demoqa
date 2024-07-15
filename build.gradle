@@ -3,7 +3,11 @@ plugins {
     id 'io.qameta.allure' version '2.11.2'
 }
 
-def allureVersion = "2.21.0",
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.28.0",
     selenideVersion = "7.3.1",
     junitVersion = "5.10.2"
 
@@ -22,19 +26,15 @@ allure {
     }
 }
 
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     testImplementation(
             "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "com.github.javafaker:javafaker:1.0.2",
-            "io.qameta.allure:allure-selenide:$allureVersion",
             'org.slf4j:slf4j-simple:2.0.7'
     )
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 }
 
 tasks.withType(Test) {
@@ -52,5 +52,4 @@ task demoqa_test(type: Test) {
     useJUnitPlatform {
         includeTags("demoqa")
     }
-    
 }
