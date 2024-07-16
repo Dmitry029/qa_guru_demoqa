@@ -1,6 +1,7 @@
 package pages.components;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 
 import java.util.Arrays;
@@ -13,6 +14,7 @@ public class CalendarComponent {
     private final SelenideElement monthSelector = $(".react-datepicker__month-select");
     private final SelenideElement yearSelector = $(".react-datepicker__year-select");
 
+    @Step("Set Date of birth by select")
     public void setDateOfBirthBySelect(String date) {
         List<String> splitDate = Arrays.asList(date.split("\\s|,"));
         dateOfBirthInput.click();
@@ -22,6 +24,7 @@ public class CalendarComponent {
                 .click();
     }
 
+    @Step("Set Date of birth by type")
     public void setDateOfBirthByType(String date) {
         dateOfBirthInput.click();
         dateOfBirthInput.sendKeys(Keys.CONTROL + "a");
