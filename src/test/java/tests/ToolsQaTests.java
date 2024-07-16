@@ -20,7 +20,7 @@ public class ToolsQaTests extends BaseTest {
     private final CalendarComponent calendarComponent = new CalendarComponent();
 
     @Test
-    //@Tag("demoqa")
+    @Tag("demoqa")
     @DisplayName("Fill in all form fields")
     void fillOutAllFormFieldsTest() {
         String firstName = getFirstName();
@@ -104,7 +104,7 @@ public class ToolsQaTests extends BaseTest {
         registrationPage.checkThereIsNoConfirmationWindow();
     }
 
-    @Tag("demoqa")
+    //@Tag("demoqa")
     @Test
     void simpleTest(){
         System.out.println("Hi !!!");
