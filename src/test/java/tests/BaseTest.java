@@ -18,7 +18,7 @@ public class BaseTest {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1400x1050";
         Configuration.pageLoadStrategy = "eager";
-        //SelenideLogger.addListener("allure", new AllureSelenide());
+        SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
         /*DesiredCapabilities capabilities = new DesiredCapabilities();
