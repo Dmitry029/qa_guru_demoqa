@@ -35,10 +35,10 @@ public class BaseTest {
     @AfterEach
     void addAttachments() {
         //closeWebDriver();
-        /*Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();*/
+        Attach.screenshotAs("Last screenshot");
+        //Attach.pageSource();
+        //Attach.browserConsoleLogs();
+        //Attach.addVideo();
 
     }
 }
