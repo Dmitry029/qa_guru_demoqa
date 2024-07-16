@@ -67,6 +67,7 @@ public class ToolsQaTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Заполнение только обязательных полей формы")
     void fillInOnlyTheRequiredFormFieldsTest() {
 
         String firstName = getFirstName();
@@ -91,6 +92,7 @@ public class ToolsQaTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Негативный тест. Заполнение не всех обязательных полей формы")
     void notAllRequiredDataTest() {
         String firstName = getFirstName();
         String gender = getGender();
@@ -102,11 +104,5 @@ public class ToolsQaTests extends BaseTest {
                 .setMobile(mobile)
                 .submitRegistration();
         registrationPage.checkThereIsNoConfirmationWindow();
-    }
-
-    //@Tag("demoqa")
-    @Test
-    void simpleTest(){
-        System.out.println("Hi !!!");
     }
 }
