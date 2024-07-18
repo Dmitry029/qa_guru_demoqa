@@ -20,8 +20,8 @@ public class ToolsQaTests extends BaseTest {
     private final CalendarComponent calendarComponent = new CalendarComponent();
 
     @Test
-    @Tag("demoqa")
-    @DisplayName("Fill in all form fields")
+    @Tag("regression")
+    @DisplayName("Заполнение всех полей формы")
     void fillOutAllFormFieldsTest() {
         String firstName = getFirstName();
         String lastName = getLastName();
@@ -67,6 +67,7 @@ public class ToolsQaTests extends BaseTest {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("Заполнение только обязательных полей формы")
     void fillInOnlyTheRequiredFormFieldsTest() {
 
@@ -92,6 +93,8 @@ public class ToolsQaTests extends BaseTest {
     }
 
     @Test
+    @Tag("regression")
+    @Tag("negative")
     @DisplayName("Негативный тест. Заполнение не всех обязательных полей формы")
     void notAllRequiredDataTest() {
         String firstName = getFirstName();
