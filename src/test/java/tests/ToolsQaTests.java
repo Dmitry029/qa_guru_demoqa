@@ -108,5 +108,4 @@ public class ToolsQaTests extends BaseTest {
                 .submitRegistration();
         registrationPage.checkThereIsNoConfirmationWindow();
     }
-
 }
