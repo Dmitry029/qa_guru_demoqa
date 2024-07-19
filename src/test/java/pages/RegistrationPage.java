@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -24,8 +25,12 @@ public class RegistrationPage {
     @Step("Open form")
     public RegistrationPage openPage() {
         open("/automation-practice-form");
-        executeJavaScript("document.getElementById('close-fixedban').parentNode.remove()");
-        executeJavaScript("document.getElementsByTagName('footer')[0].remove()");
+        $(".text-center").shouldHave(text("Practice Form"));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#Ad.Plus-300x250_1')");
+        //executeJavaScript("document.getElementById('close-fixedban').parentNode.remove()");
+        //executeJavaScript("document.getElementsByTagName('footer')[0].remove()");
         return this;
     }
 
